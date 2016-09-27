@@ -77,11 +77,9 @@ public class MainActivity extends AppCompatActivity
             // Handle the equipo action
             Intent i = new Intent(MainActivity.this, EquipoActivity.class);
             startActivity(i);
-        } else if (id == R.id.nav_gallery) {
-            Intent i = new Intent(MainActivity.this, LtwJugadoresActivity.class);
-            startActivity(i);
+        } else if (id == R.id.nav_copa) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_apuestas) {
 
         } else if (id == R.id.nav_manage) {
 
