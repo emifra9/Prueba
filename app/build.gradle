@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 19
+    buildToolsVersion "19.0.4"
     defaultConfig {
         applicationId "com.example.emiliano.prueba"
         minSdkVersion 15
-        targetSdkVersion 24
+        targetSdkVersion 19
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
