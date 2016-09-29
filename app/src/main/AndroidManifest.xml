@@ -21,8 +21,6 @@
             android:name=".EquipoActivity"
             android:label="@string/title_activity_equipo"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LtwJugadoresActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
