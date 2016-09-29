@@ -4,7 +4,11 @@ package com.example.emiliano.prueba;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public class LtwJugadoresActivity extends AppCompatActivity {
@@ -30,6 +34,16 @@ public class LtwJugadoresActivity extends AppCompatActivity {
       //  adapter.add(newJugador2);
         ListView listView = (ListView) findViewById(R.id.ltwjugadores);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                // TODO Auto-generated method stub
+                Toast.makeText(LtwJugadoresActivity.this, "llega", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
