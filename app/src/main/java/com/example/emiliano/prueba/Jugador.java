@@ -10,9 +10,25 @@ import android.os.Parcelable;
 public class Jugador implements Parcelable {
     String nombre;
     String puntaje;
-    public Jugador(String nombre, String puntaje) {
+    Integer posicion;
+
+    public Integer getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(Integer posicion) {
+        this.posicion = posicion;
+    }
+
+    public static Creator<Jugador> getCREATOR() {
+        return CREATOR;
+    }
+
+
+    public Jugador(String nombre, String puntaje, Integer posicion) {
         this.nombre = nombre;
         this.puntaje = puntaje;
+        this.posicion = posicion;
     }
 
     public Jugador() {
@@ -22,6 +38,7 @@ public class Jugador implements Parcelable {
     protected Jugador(Parcel in) {
         nombre = in.readString();
         puntaje = in.readString();
+        posicion = in.readInt();
     }
 
     public static final Creator<Jugador> CREATOR = new Creator<Jugador>() {
@@ -62,5 +79,6 @@ public class Jugador implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(nombre);
         dest.writeString(puntaje);
+        dest.writeInt(posicion);
     }
 }

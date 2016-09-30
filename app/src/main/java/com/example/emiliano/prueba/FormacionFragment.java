@@ -25,6 +25,10 @@ public class FormacionFragment extends Fragment implements View.OnClickListener{
     // either dynamically or via XML layout inflation.
     private ImageButton buttonArquero ;
     private TextView textArquero;
+    private TextView textDef1;
+    private TextView textMed1;
+    private TextView textDel1;
+    private TextView textDel2;
     private ImageButton buttonDef1 ;
     private ImageButton buttonDef2 ;
     private ImageButton buttonDef3 ;
@@ -49,8 +53,23 @@ public class FormacionFragment extends Fragment implements View.OnClickListener{
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             Jugador jugador = bundle.getParcelable("Jugador");
-            textArquero = (TextView) view.findViewById(R.id.txtArq);
-            textArquero.setText(jugador.getNombre());
+            if (jugador.getPosicion() == 1){
+                textArquero = (TextView) view.findViewById(R.id.txtArq);
+                textArquero.setText(jugador.getNombre());
+            }
+            if (jugador.getPosicion() == 2){
+                textDef1 = (TextView) view.findViewById(R.id.txtDef1);
+                textDef1.setText(jugador.getNombre());
+            }
+            if (jugador.getPosicion() == 3){
+                textMed1 = (TextView) view.findViewById(R.id.txtMed1);
+                textMed1.setText(jugador.getNombre());
+            }
+            if (jugador.getPosicion() == 4){
+                textDel1 = (TextView) view.findViewById(R.id.txtDel1);
+                textDel1.setText(jugador.getNombre());
+            }
+
 
         }
 

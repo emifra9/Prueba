@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 /**
  * Created by Administrador on 29/09/2016.
@@ -39,12 +41,20 @@ public class LtwJugFragment extends Fragment {
         final JugadoresAdapter adapter = new JugadoresAdapter(getActivity(), arrayOfJugadores);
 // Attach the adapter to a ListView
 
-        Jugador newJugador = new Jugador("Marco Ruben", "12");
+        Jugador newJugador = new Jugador("Marco Ruben", "12",4);
         adapter.add(newJugador);
-        Jugador newJugador1 = new Jugador("Paulo Ferrari", "6");
+        Jugador newJugador1 = new Jugador("Paulo Ferrari", "6",2);
         adapter.add(newJugador1);
-        Jugador newJugador2 = new Jugador("Teo Gutierrez", "8");
+        Jugador newJugador2 = new Jugador("Teo Gutierrez", "8",4);
         adapter.add(newJugador2);
+        Jugador newJugador3 = new Jugador("Fernando Gago", "8",3);
+        adapter.add(newJugador3);
+        Jugador newJugador4 = new Jugador("Timoteo Griguol", "6",1);
+        adapter.add(newJugador4);
+        Jugador newJugador5 = new Jugador("Fernando Alonzo", "11",2);
+        adapter.add(newJugador5);
+        Jugador newJugador6 = new Jugador("Leo Mattioli", "2",4);
+        adapter.add(newJugador6);
         //   Jugador newJugador2 = new Jugador("Ferrari", 5);
         //  adapter.add(newJugador2);
         final ListView listView = (ListView) view.findViewById(R.id.ltwjugadores);
@@ -53,8 +63,7 @@ public class LtwJugFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
-                    Jugador item = adapter.getItem(position);
+                Jugador item = adapter.getItem(position);
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("Jugador", item);
                 Fragment fragment = new FormacionFragment();
@@ -62,8 +71,7 @@ public class LtwJugFragment extends Fragment {
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.phFragment,fragment);
                 ft.commit();
-                   // Intent i = new Intent(getActivity(), EquipoActivity.class);
-                   // startActivity(i);
+
 
             }
         });
