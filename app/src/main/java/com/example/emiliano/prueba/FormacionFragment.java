@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -22,6 +24,7 @@ public class FormacionFragment extends Fragment implements View.OnClickListener{
     // The onCreateView method is called when Fragment should create its View object hierarchy,
     // either dynamically or via XML layout inflation.
     private ImageButton buttonArquero ;
+    private TextView textArquero;
     private ImageButton buttonDef1 ;
     private ImageButton buttonDef2 ;
     private ImageButton buttonDef3 ;
@@ -43,6 +46,14 @@ public class FormacionFragment extends Fragment implements View.OnClickListener{
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            Jugador jugador = bundle.getParcelable("Jugador");
+            textArquero = (TextView) view.findViewById(R.id.txtArq);
+            textArquero.setText(jugador.getNombre());
+
+        }
+
         buttonArquero = (ImageButton)view.findViewById(R.id.btnArq);
         buttonArquero.setOnClickListener(this);
         buttonDef1 = (ImageButton)view.findViewById(R.id.btnDef1);
@@ -71,7 +82,7 @@ public class FormacionFragment extends Fragment implements View.OnClickListener{
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
 // Replace the contents of the container with the new fragment
         ft.replace(R.id.phFragment, new LtwJugFragment());
-        ft.addToBackStack(TAG);
+     //   ft.addToBackStack(TAG);
 // or ft.add(R.id.your_placeholder, new FooFragment());
 // Complete the changes added above
         ft.commit();
