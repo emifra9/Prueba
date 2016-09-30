@@ -1,145 +1,310 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_equipo"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:baselineAligned="false"
     android:background="@drawable/campofutbol"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.emiliano.prueba.EquipoActivity"
-    tools:showIn="@layout/activity_equipo">
+   >
 
-
-    <ImageButton
-        android:id="@+id/btnDef3"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/jugador"
-        android:background="@null"
-        android:layout_alignTop="@+id/btnDef2"
-        android:layout_toRightOf="@+id/btnArq"
-        android:layout_toEndOf="@+id/btnArq"
-        android:layout_marginLeft="18dp"
-        android:layout_marginStart="18dp" />
-    <ImageButton
-        android:id="@+id/btnDef1"
-        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnArq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/jugador"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtArq"
+            android:text=""
+            android:layout_below="@+id/btnArq"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="41dp"
-        android:src="@drawable/jugador"
-        android:background="@null"
-        android:layout_below="@+id/btnArq"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="28dp"
-        android:layout_marginStart="28dp" />
+        android:layout_weight="1"
+        android:layout_gravity="left"
 
-    <ImageButton
-        android:id="@+id/btnDef2"
-        android:layout_width="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                >
+
+                <ImageButton
+                    android:id="@+id/btnDef1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jugador"
+                    android:background="@null"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/txtDef1"
+                    android:layout_below="@+id/btnDef1"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                >
+                <ImageButton
+                    android:id="@+id/btnDef2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jugador"
+                    android:background="@null"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/txtDef2"
+                    android:layout_below="@+id/btnDef2"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                >
+                <ImageButton
+                    android:id="@+id/btnDef3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jugador"
+                    android:background="@null"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/txtDef3"
+                    android:layout_below="@+id/btnDef3"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                >
+                <ImageButton
+                    android:id="@+id/btnDef4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jugador"
+                    android:background="@null"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/txtDef4"
+                    android:layout_below="@+id/btnDef4"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/jugador"
-        android:background="@null"
-        android:layout_alignTop="@+id/btnDef1"
-        android:layout_toLeftOf="@+id/btnArq"
-        android:layout_toStartOf="@+id/btnArq"
-        android:layout_marginRight="14dp"
-        android:layout_marginEnd="14dp" />
+        android:layout_weight="1"
+        android:layout_gravity="left"
 
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                >
 
+                <ImageButton
+                    android:id="@+id/btnMed1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jugador"
+                    android:background="@null"
+                    android:layout_centerHorizontal="true" />
 
-    <ImageButton
-        android:id="@+id/btnArq"
-        android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/txtMed1"
+                    android:layout_below="@+id/btnMed1"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                >
+                <ImageButton
+                    android:id="@+id/btnMed2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jugador"
+                    android:background="@null"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/txtMed2"
+                    android:layout_below="@+id/btnMed2"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+                <ImageButton
+                    android:id="@+id/btnMed3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jugador"
+                    android:background="@null"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/txtMed3"
+                    android:layout_below="@+id/btnMed3"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/jugador"
-        android:background="@null" />
+        android:layout_weight="1"
+        android:layout_gravity="left"
 
-    <ImageButton
-        android:id="@+id/btnDef4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/jugador"
-        android:background="@null"
-        android:layout_alignTop="@+id/btnDef3"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="17dp"
-        android:layout_marginEnd="17dp" />
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                >
 
-    <ImageButton
-        android:id="@+id/btnMed2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/jugador"
-        android:background="@null"
-        android:paddingTop="100dp"
-        android:layout_below="@+id/btnDef2"
-        android:layout_toLeftOf="@+id/btnDef3"
-        android:layout_toStartOf="@+id/btnDef3" />
+                <ImageButton
+                    android:id="@+id/btnDel1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jugador"
+                    android:background="@null"
+                    android:layout_centerHorizontal="true" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/txtDel1"
+                    android:layout_below="@+id/btnDel1"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                >
+                <ImageButton
+                    android:id="@+id/btnDel2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jugador"
+                    android:background="@null"
+                    android:layout_centerHorizontal="true" />
 
-    <ImageButton
-        android:id="@+id/btnMed1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/jugador"
-        android:background="@null"
-        android:paddingTop="100dp"
-        android:layout_below="@+id/btnDef2"
-        android:layout_toRightOf="@+id/btnDef1"
-        android:layout_toEndOf="@+id/btnDef1" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/txtDel2"
+                    android:layout_below="@+id/btnDel2"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+                <ImageButton
+                    android:id="@+id/btnDel3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jugador"
+                    android:background="@null"
+                    android:layout_centerHorizontal="true" />
 
-    <ImageButton
-        android:id="@+id/btnMed3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/jugador"
-        android:background="@null"
-        android:paddingTop="100dp"
-        android:layout_marginRight="26dp"
-        android:layout_marginEnd="26dp"
-        android:layout_below="@+id/btnDef4"
-        android:layout_alignRight="@+id/btnDef4"
-        android:layout_alignEnd="@+id/btnDef4" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/txtDel3"
+                    android:layout_below="@+id/btnDel3"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
 
+        </LinearLayout>
+    </RelativeLayout>
 
-    <ImageButton
-        android:id="@+id/btnDel2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/jugador"
-        android:background="@null"
-        android:paddingTop="100dp"
-        android:layout_below="@+id/btnMed2"
-        android:layout_alignLeft="@+id/btnMed2"
-        android:layout_alignStart="@+id/btnMed2" />
-
-    <ImageButton
-        android:id="@+id/btnDel3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/jugador"
-        android:background="@null"
-        android:paddingTop="100dp"
-        android:layout_below="@+id/btnMed3"
-        android:layout_alignLeft="@+id/btnMed3"
-        android:layout_alignStart="@+id/btnMed3" />
-
-    <ImageButton
-        android:id="@+id/btnDel1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/jugador"
-        android:background="@null"
-        android:paddingTop="100dp"
-        android:layout_below="@+id/btnMed1"
-        android:layout_alignLeft="@+id/btnMed1"
-        android:layout_alignStart="@+id/btnMed1" />
-
-
-</RelativeLayout>
+</LinearLayout>
