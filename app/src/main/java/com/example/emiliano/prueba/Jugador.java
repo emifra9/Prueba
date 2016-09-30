@@ -11,6 +11,15 @@ public class Jugador implements Parcelable {
     String nombre;
     String puntaje;
     Integer posicion;
+    Integer nrojug;
+
+    public Integer getNrojug() {
+        return nrojug;
+    }
+
+    public void setNrojug(Integer nrojug) {
+        this.nrojug = nrojug;
+    }
 
     public Integer getPosicion() {
         return posicion;
@@ -25,10 +34,11 @@ public class Jugador implements Parcelable {
     }
 
 
-    public Jugador(String nombre, String puntaje, Integer posicion) {
+    public Jugador(String nombre, String puntaje, Integer posicion, Integer nrojug) {
         this.nombre = nombre;
         this.puntaje = puntaje;
         this.posicion = posicion;
+        this.nrojug = nrojug;
     }
 
     public Jugador() {
@@ -39,6 +49,7 @@ public class Jugador implements Parcelable {
         nombre = in.readString();
         puntaje = in.readString();
         posicion = in.readInt();
+        nrojug = in.readInt();
     }
 
     public static final Creator<Jugador> CREATOR = new Creator<Jugador>() {
@@ -80,5 +91,6 @@ public class Jugador implements Parcelable {
         dest.writeString(nombre);
         dest.writeString(puntaje);
         dest.writeInt(posicion);
+        dest.writeInt(nrojug);
     }
 }
