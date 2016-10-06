@@ -1,8 +1,7 @@
-package com.example.emiliano.prueba;
+package com.example.emiliano.prueba.Fragments;
 
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,9 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import org.json.JSONArray;
+import com.example.emiliano.prueba.Adapters.JugadoresAdapter;
+import com.example.emiliano.prueba.Model.Jugador;
+import com.example.emiliano.prueba.R;
 
 import java.util.ArrayList;
 /**
@@ -41,20 +41,21 @@ public class LtwJugFragment extends Fragment {
         final JugadoresAdapter adapter = new JugadoresAdapter(getActivity(), arrayOfJugadores);
 // Attach the adapter to a ListView
 
-        Jugador newJugador = new Jugador("Marco Ruben", "12",4);
-        adapter.add(newJugador);
-        Jugador newJugador1 = new Jugador("Paulo Ferrari", "6",2);
-        adapter.add(newJugador1);
-        Jugador newJugador2 = new Jugador("Teo Gutierrez", "8",4);
-        adapter.add(newJugador2);
-        Jugador newJugador3 = new Jugador("Fernando Gago", "8",3);
-        adapter.add(newJugador3);
-        Jugador newJugador4 = new Jugador("Timoteo Griguol", "6",1);
-        adapter.add(newJugador4);
-        Jugador newJugador5 = new Jugador("Fernando Alonzo", "11",2);
-        adapter.add(newJugador5);
-        Jugador newJugador6 = new Jugador("Leo Mattioli", "2",4);
-        adapter.add(newJugador6);
+
+        Jugador newJugador = new Jugador("Marco Ruben", 12,4);
+        arrayOfJugadores.add(newJugador);
+        Jugador newJugador1 = new Jugador("Paulo Ferrari", 6,2);
+        arrayOfJugadores.add(newJugador1);
+        Jugador newJugador2 = new Jugador("Teo Gutierrez", 8,4);
+        arrayOfJugadores.add(newJugador2);
+        Jugador newJugador3 = new Jugador("Fernando Gago", 8,3);
+        arrayOfJugadores.add(newJugador3);
+        Jugador newJugador4 = new Jugador("Timoteo Griguol", 6,1);
+        arrayOfJugadores.add(newJugador4);
+        Jugador newJugador5 = new Jugador("Fernando Alonzo", 11,2);
+        arrayOfJugadores.add(newJugador5);
+        Jugador newJugador6 = new Jugador("Leo Mattioli", 2,4);
+        arrayOfJugadores.add(newJugador6);
         //   Jugador newJugador2 = new Jugador("Ferrari", 5);
         //  adapter.add(newJugador2);
         final ListView listView = (ListView) view.findViewById(R.id.ltwjugadores);
