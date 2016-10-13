@@ -38,7 +38,7 @@ public class JugadoresAdapter extends ArrayAdapter<Jugador> {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.ltwjugadoritem, parent, false);
             viewHolder.nombre = (TextView) convertView.findViewById(R.id.nombreJugador);
-            viewHolder.puntos = (TextView) convertView.findViewById(R.id.puntaje);
+            viewHolder.puntos = (TextView) convertView.findViewById(R.id.precio);
             // Cache the viewHolder object inside the fresh view
             convertView.setTag(viewHolder);
         } else {
@@ -46,8 +46,8 @@ public class JugadoresAdapter extends ArrayAdapter<Jugador> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         // Populate the data into the template view using the data object
-        viewHolder.nombre.setText(jugador.nombre);
-        viewHolder.puntos.setText(jugador.puntaje);
+        viewHolder.nombre.setText(jugador.getNombre());
+        viewHolder.puntos.setText(jugador.getPrecio());
         // Return the completed view to render on screen
         return convertView;
     }

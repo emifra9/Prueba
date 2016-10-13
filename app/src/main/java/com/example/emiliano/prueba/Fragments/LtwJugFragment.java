@@ -42,21 +42,7 @@ public class LtwJugFragment extends Fragment {
 // Attach the adapter to a ListView
 
 
-        Jugador newJugador = new Jugador("Marco Ruben", 12,4);
-        arrayOfJugadores.add(newJugador);
-        Jugador newJugador1 = new Jugador("Paulo Ferrari", 6,2);
-        arrayOfJugadores.add(newJugador1);
-        Jugador newJugador2 = new Jugador("Teo Gutierrez", 8,4);
-        arrayOfJugadores.add(newJugador2);
-        Jugador newJugador3 = new Jugador("Fernando Gago", 8,3);
-        arrayOfJugadores.add(newJugador3);
-        Jugador newJugador4 = new Jugador("Timoteo Griguol", 6,1);
-        arrayOfJugadores.add(newJugador4);
-        Jugador newJugador5 = new Jugador("Fernando Alonzo", 11,2);
-        arrayOfJugadores.add(newJugador5);
-        Jugador newJugador6 = new Jugador("Leo Mattioli", 2,4);
-        arrayOfJugadores.add(newJugador6);
-        //   Jugador newJugador2 = new Jugador("Ferrari", 5);
+         //   Jugador newJugador2 = new Jugador("Ferrari", 5);
         //  adapter.add(newJugador2);
         final ListView listView = (ListView) view.findViewById(R.id.ltwjugadores);
         listView.setAdapter(adapter);
@@ -66,7 +52,7 @@ public class LtwJugFragment extends Fragment {
 
                 Jugador item = adapter.getItem(position);
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("Jugador", item);
+//                bundle.putParcelable("Jugador", item);
                 Fragment fragment = new FormacionFragment();
                 fragment.setArguments(bundle);
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();

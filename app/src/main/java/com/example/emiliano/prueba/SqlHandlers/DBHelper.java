@@ -1,17 +1,10 @@
 package com.example.emiliano.prueba.SqlHandlers;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 import android.provider.BaseColumns;
-
-import com.example.emiliano.prueba.Model.Jugador;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import com.example.emiliano.prueba.SqlHandlers.InterfaceDB.Jugadores;
 import com.example.emiliano.prueba.SqlHandlers.InterfaceDB.Equipos;
