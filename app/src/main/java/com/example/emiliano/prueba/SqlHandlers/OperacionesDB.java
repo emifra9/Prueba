@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.emiliano.prueba.Model.Jugador;
 import com.example.emiliano.prueba.Model.Equipo;
@@ -46,14 +47,60 @@ public class OperacionesDB {
 
 
     // [OPERACIONES_JUGADORES]
-    public Cursor obtenerJugadores() {
+    public ArrayList<Jugador> obtenerJugadores() {
         SQLiteDatabase db = baseDatos.getReadableDatabase();
-
+       ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
         String sql = String.format("SELECT * FROM %s", Tablas.JUGADORES);
 
-        return db.rawQuery(sql, null);
-    }
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        do {
+            Jugador jugador = new Jugador();
+            jugador.setId(cursor.getInt(cursor.getColumnIndex(Jugadores.ID)));
+            jugador.setNombre(cursor.getString(cursor.getColumnIndex(Jugadores.NOMBRE)));
+            jugador.setPosicion(cursor.getInt(cursor.getColumnIndex(Jugadores.POSICION)));
+            jugador.setPrecio(cursor.getInt(cursor.getColumnIndex(Jugadores.PRECIO)));
 
+            jugadores.add(jugador);
+
+        } while (cursor.moveToNext());
+        return jugadores;
+    }
+    public ArrayList<Jugador> obtenerJugadoresxPos(String posicion) {
+        SQLiteDatabase db = baseDatos.getReadableDatabase();
+        ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+        String sql = String.format("SELECT * FROM %s where %s=%s", Tablas.JUGADORES,Jugadores.POSICION,posicion);
+
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        do {
+            Jugador jugador = new Jugador();
+            jugador.setId(cursor.getInt(cursor.getColumnIndex(Jugadores.ID)));
+            jugador.setNombre(cursor.getString(cursor.getColumnIndex(Jugadores.NOMBRE)));
+            jugador.setPosicion(cursor.getInt(cursor.getColumnIndex(Jugadores.POSICION)));
+            jugador.setPrecio(cursor.getInt(cursor.getColumnIndex(Jugadores.PRECIO)));
+
+            jugadores.add(jugador);
+
+        } while (cursor.moveToNext());
+        return jugadores;
+    }
+    public Jugador obtenerJugador(int idJug) {
+        SQLiteDatabase db = baseDatos.getReadableDatabase();
+         String sql = String.format("SELECT * FROM %s where %s=%s", Tablas.JUGADORES, Jugadores.ID, idJug);
+
+        Jugador jugador = new Jugador();
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        do {
+            jugador.setId(cursor.getInt(cursor.getColumnIndex(Jugadores.ID)));
+            jugador.setNombre(cursor.getString(cursor.getColumnIndex(Jugadores.NOMBRE)));
+            jugador.setPosicion(cursor.getInt(cursor.getColumnIndex(Jugadores.POSICION)));
+            jugador.setPrecio(cursor.getInt(cursor.getColumnIndex(Jugadores.PRECIO)));
+
+        } while (cursor.moveToNext());
+        return jugador;
+    }
     public String insertarJugador(Jugador jugador) {
         SQLiteDatabase db = baseDatos.getWritableDatabase();
 
@@ -86,6 +133,7 @@ public class OperacionesDB {
 
     public void actualizarJugadores(ArrayList<Jugador> jugadores) {
         SQLiteDatabase db = baseDatos.getWritableDatabase();
+
         for(Jugador jugador:jugadores){
                 ContentValues valores = new ContentValues();
                 valores.put(Jugadores.ID, jugador.getId());
@@ -94,8 +142,14 @@ public class OperacionesDB {
                 valores.put(Jugadores.PRECIO, jugador.getPrecio());
             String whereClause = String.format("%s=?", Jugadores.ID);
             final String[] whereArgs = {Integer.toString(jugador.getId())};
+            int resultado = 0;
+            try {
+                 resultado = db.update(Tablas.JUGADORES, valores, whereClause, whereArgs);
+            }catch (Exception e)
+            {
+                e.printStackTrace();
+            }
 
-            int resultado = db.update(Tablas.JUGADORES, valores, whereClause, whereArgs);
             if (resultado == 0) {
                 db.insert(Tablas.JUGADORES, null, valores);
             }

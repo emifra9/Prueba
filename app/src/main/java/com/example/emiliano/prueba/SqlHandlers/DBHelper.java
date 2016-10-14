@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 import android.provider.BaseColumns;
+import android.util.Log;
 
 import com.example.emiliano.prueba.SqlHandlers.InterfaceDB.Jugadores;
 import com.example.emiliano.prueba.SqlHandlers.InterfaceDB.Equipos;
@@ -44,7 +45,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onOpen(SQLiteDatabase db) {
+
         super.onOpen(db);
+        Log.e("DBHelper","open db");
 
         if(!db.isReadOnly()){
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
@@ -60,22 +63,36 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // Creamos las tablas en la Base de datos
         db.execSQL(String.format("CREATE TABLE %s ( %s INTEGER PRIMARY KEY AUTOINCREMENT, "+
-        "%s TEXT NOT NULL, %s INTEGER NOT NULL, %s INTEGER NOT NULL)", Tablas.JUGADORES, BaseColumns._ID,
+                        "%s INTEGER NOT NULL,%s TEXT NOT NULL, %s INTEGER NOT NULL, %s INTEGER NOT NULL)", Tablas.JUGADORES, BaseColumns._ID,
                 Jugadores.ID, Jugadores.NOMBRE, Jugadores.POSICION, Jugadores.PRECIO));
 
-        db.execSQL(String.format("CREATE TABLE %s ( %s INTEGER PRIMARY KEY AUTOINCREMENT, "+
+        Log.e("DBHelper","oncreate tabla jugadores ");
+
+   /*     db.execSQL(String.format("CREATE TABLE %s ( %s INTEGER PRIMARY KEY AUTOINCREMENT, "+
                         "%s INTEGER NOT NULL, %s INTEGER NOT NULL %s, %s INTEGER NOT NULL)", Tablas.PUNTAJES, BaseColumns._ID,
                 Puntajes.ID, Puntajes.N_FECHA, Puntajes.ID_JUGADOR, Referencias.ID_JUGADOR, Puntajes.PUNTAJE));
 
         db.execSQL(String.format("CREATE TABLE %s ( %s INTEGER PRIMARY KEY AUTOINCREMENT, "+
                         "%s INTEGER NOT NULL, %s INTEGER NOT NULL %s)", Tablas.EQUIPOS, BaseColumns._ID,
-                Equipos.ID, Equipos.N_FECHA, Equipos.ID_JUGADOR, Referencias.ID_JUGADOR));
+                Equipos.ID, Equipos.N_FECHA, Equipos.ID_JUGADOR, Referencias.ID_JUGADOR));*/
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         db.execSQL("DROP TABLE IF EXIST " + Tablas.JUGADORES);
+        Log.e("DBHelper","drop tabla jugadores ");
+
+        db.execSQL("DROP TABLE IF EXIST " + Tablas.PUNTAJES);
+        db.execSQL("DROP TABLE IF EXIST " + Tablas.EQUIPOS);
+
+        this.onCreate(db);
+    }
+    public void EliminaDB(SQLiteDatabase db) {
+
+        db.execSQL("DROP TABLE IF EXIST " + Tablas.JUGADORES);
+        Log.e("DBHelper","drop tabla jugadores ");
+
         db.execSQL("DROP TABLE IF EXIST " + Tablas.PUNTAJES);
         db.execSQL("DROP TABLE IF EXIST " + Tablas.EQUIPOS);
 

@@ -4,6 +4,7 @@ package com.example.emiliano.prueba.Fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.emiliano.prueba.Model.Jugador;
 import com.example.emiliano.prueba.R;
+import com.example.emiliano.prueba.SqlHandlers.OperacionesDB;
 
 /**
  * Created by Administrador on 29/09/2016.
@@ -20,6 +22,7 @@ import com.example.emiliano.prueba.R;
 public class FormacionFragment extends Fragment implements View.OnClickListener{
     // The onCreateView method is called when Fragment should create its View object hierarchy,
     // either dynamically or via XML layout inflation.
+    OperacionesDB db;
     private ImageButton buttonArquero ;
     private TextView textArquero;
     private TextView textDef1;
@@ -49,7 +52,10 @@ public class FormacionFragment extends Fragment implements View.OnClickListener{
     public void onViewCreated(View view, Bundle savedInstanceState) {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            Jugador jugador = bundle.getParcelable("Jugador");
+            Integer jugId = bundle.getInt("Jugador");
+            db = OperacionesDB.obtenerInstancia(getActivity());
+            Jugador jugador = db.obtenerJugador(jugId);
+
             if (jugador.getPosicion() == 1){
                 textArquero = (TextView) view.findViewById(R.id.txtArq);
                 textArquero.setText(jugador.getNombre());
@@ -97,6 +103,8 @@ public class FormacionFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
 // Replace the contents of the container with the new fragment
+        Log.e("IDBTN", ""+view.getId());
+        Log.e("TAGBTN", ""+view.getTag());
         ft.replace(R.id.phFragment, new LtwJugFragment());
      //   ft.addToBackStack(TAG);
 // or ft.add(R.id.your_placeholder, new FooFragment());

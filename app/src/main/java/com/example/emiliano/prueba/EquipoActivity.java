@@ -11,6 +11,7 @@ import android.util.Log;
 
 
 import com.example.emiliano.prueba.Fragments.FormacionFragment;
+import com.example.emiliano.prueba.Fragments.FormacionFragmentPosta;
 import com.example.emiliano.prueba.Model.Jugador;
 import com.example.emiliano.prueba.PostTask.AsyncTaskListener;
 import com.example.emiliano.prueba.PostTask.PostTask;
@@ -40,7 +41,7 @@ public class EquipoActivity extends AppCompatActivity {
                 ArrayList<Jugador>  jugadores = Jugador.fromJson(result);
                 db.actualizarJugadores(jugadores);
                 Log.e("Detalles de jugadores", "Detalles de jugadores");
-                DatabaseUtils.dumpCursor(db.obtenerJugadores());
+         //       DatabaseUtils.dumpCursor(db.obtenerJugadores());
 
 
             }
@@ -50,7 +51,7 @@ public class EquipoActivity extends AppCompatActivity {
         // Begin the transaction
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 // Replace the contents of the container with the new fragment
-        ft.replace(R.id.phFragment, new FormacionFragment());
+        ft.replace(R.id.phFragment, new FormacionFragmentPosta());
 // or ft.add(R.id.your_placeholder, new FooFragment());
 // Complete the changes added above
         ft.commit();
