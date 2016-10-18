@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.emiliano.prueba.Model.Equipo;
 import com.example.emiliano.prueba.Model.Jugador;
 import com.example.emiliano.prueba.R;
 import com.example.emiliano.prueba.SqlHandlers.OperacionesDB;
@@ -41,6 +42,13 @@ public class FormacionFragmentPosta extends Fragment implements View.OnClickList
 
             db = OperacionesDB.obtenerInstancia(getActivity());
             Jugador jugador = db.obtenerJugador(jugId);
+
+            Equipo equipo = new Equipo();
+            equipo.setIdJugador(jugador.getId());
+            equipo.setNroPos(btnId);
+            equipo.setSisJuegoId(1);
+
+            db.actualizarEquipo(equipo);
 
             if (jugador.getPosicion() == 1){
              //   btnId = (TextView) view.findViewById(R.id.txtArq);

@@ -32,6 +32,7 @@ public class EquipoActivity extends AppCompatActivity {
         //getApplicationContext().deleteDatabase("DTManBD.db");
         db = OperacionesDB
                 .obtenerInstancia(getApplicationContext());
+//db.EliminaDB();
         String url = "jugadores.php";
         String params = "action=getjugadores";
         PostTask wscall = new PostTask(this, url, params, new AsyncTaskListener() {

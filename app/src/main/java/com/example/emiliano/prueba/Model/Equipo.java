@@ -13,15 +13,20 @@ import java.util.ArrayList;
 public class Equipo {
 
     public Integer id;
-    public String nFecha;
     public Integer idJugador;
+    public String fechaModif;
+    public Integer sisJuegoId;
+    public Integer nroPos;
+
 
 
     public Equipo(JSONObject object) {
         try {
             this.id = object.getInt("id");
-            this.nFecha = object.getString("n_fecha");
             this.idJugador = object.getInt("id_jugador");
+            this.fechaModif = object.getString("fechaModif");
+            this.sisJuegoId = object.getInt("sisjuegoid");
+            this.nroPos = object.getInt("nropos");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -34,16 +39,16 @@ public class Equipo {
     }
 
     public static ArrayList<Equipo> fromJson(JSONArray jsonObjects) {
-        ArrayList<Equipo> product = new ArrayList<Equipo>();
+        ArrayList<Equipo> equipos = new ArrayList<Equipo>();
         for (int i = 0; i < jsonObjects.length(); i++) {
             try {
-                product.add(new Equipo(jsonObjects.getJSONObject(i)));
+                equipos.add(new Equipo(jsonObjects.getJSONObject(i)));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
 
-        return product;
+        return equipos;
     }
 
     public Integer getId() {
@@ -54,14 +59,6 @@ public class Equipo {
         this.id = id;
     }
 
-    public String getnFecha() {
-        return nFecha;
-    }
-
-    public void setnFecha(String nFecha) {
-        this.nFecha = nFecha;
-    }
-
     public Integer getIdJugador() {
         return idJugador;
     }
@@ -69,5 +66,19 @@ public class Equipo {
     public void setIdJugador(Integer idJugador) {
         this.idJugador = idJugador;
     }
+
+    public String getFechaModif() {
+        return fechaModif;
+    }
+
+    public void setFechaModif(String fechaModif) { this.fechaModif = fechaModif;  }
+
+    public Integer getSisJuegoId() {  return sisJuegoId; }
+
+    public void setSisJuegoId(Integer sisJuegoId) { this.sisJuegoId = sisJuegoId;  }
+
+    public Integer getNroPos() {  return nroPos; }
+
+    public void setNroPos(Integer nroPos) { this.nroPos = nroPos;  }
 
 }
