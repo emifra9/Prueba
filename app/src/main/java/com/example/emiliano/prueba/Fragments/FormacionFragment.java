@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.emiliano.prueba.Model.Equipo;
 import com.example.emiliano.prueba.Model.Jugador;
 import com.example.emiliano.prueba.R;
 import com.example.emiliano.prueba.SqlHandlers.OperacionesDB;
@@ -55,6 +56,7 @@ public class FormacionFragment extends Fragment implements View.OnClickListener{
             Integer jugId = bundle.getInt("Jugador");
             db = OperacionesDB.obtenerInstancia(getActivity());
             Jugador jugador = db.obtenerJugador(jugId);
+
 
             if (jugador.getPosicion() == 1){
                 textArquero = (TextView) view.findViewById(R.id.txtArq);
