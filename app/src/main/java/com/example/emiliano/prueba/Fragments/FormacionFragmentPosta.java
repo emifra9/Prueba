@@ -29,10 +29,7 @@ import java.util.Date;
  */
 
 public class FormacionFragmentPosta extends Fragment implements View.OnClickListener{
-    // The onCreateView method is called when Fragment should create its View object hierarchy,
-    // either dynamically or via XML layout inflation.
     OperacionesDB db;
-    Utilidades util;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -50,9 +47,7 @@ public class FormacionFragmentPosta extends Fragment implements View.OnClickList
         if (bundle != null) {
             Integer jugId = bundle.getInt("Jugador");
             String btnId = bundle.getString("btnId");
-
             Jugador jugador = db.obtenerJugador(jugId);
-
             Equipo equipo = new Equipo();
             equipo.setIdJugador(jugador.getId());
             equipo.setNroPos(Integer.parseInt(btnId));
@@ -65,7 +60,6 @@ public class FormacionFragmentPosta extends Fragment implements View.OnClickList
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         ArrayList<Equipo> arrEquipos = db.obtenerEquipos(dateFormat.format(date));
-
         for (Equipo equip:arrEquipos) {
             int resTxtId = getResources().getIdentifier("txt"+equip.getNroPos(), "id", getActivity().getPackageName());
             TextView txtId = (TextView) view.findViewById(resTxtId);
@@ -93,9 +87,6 @@ public class FormacionFragmentPosta extends Fragment implements View.OnClickList
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
 // Replace the contents of the container with the new fragment
         ft.replace(R.id.phFragment, fragment);
-        //   ft.addToBackStack(TAG);
-// or ft.add(R.id.your_placeholder, new FooFragment());
-// Complete the changes added above
         ft.commit();
     }
 

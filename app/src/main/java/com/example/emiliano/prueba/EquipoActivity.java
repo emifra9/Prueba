@@ -35,9 +35,8 @@ public class EquipoActivity extends AppCompatActivity {
         //getApplicationContext().deleteDatabase("DTManBD.db");
         db = OperacionesDB
                 .obtenerInstancia(getApplicationContext());
-//db.EliminaDB();
         String url = "jugadores.php";
-        String params = "action=getjugadores&fecha=2016-10-26 20:02:04";
+        String params = "action=getjugadores&fecha=2016-10-26 20:35:04";
         PostTask wscall = new PostTask(activity, url, params, new AsyncTaskListener() {
             @Override
         public void onTaskComplete(JSONArray result) {
@@ -48,7 +47,7 @@ public class EquipoActivity extends AppCompatActivity {
          //       DatabaseUtils.dumpCursor(db.obtenerJugadores());
 
                 String url2 = "sisjuego.php";
-                String params2 = "action=getsisjuego&fecha=2016-10-26 20:02:04";
+                String params2 = "action=getsisjuego&fecha=2016-10-26 20:35:04";
                 PostTask wscall2 = new PostTask(activity, url2, params2, new AsyncTaskListener() {
                     @Override
                     public void onTaskComplete(JSONArray result) {
