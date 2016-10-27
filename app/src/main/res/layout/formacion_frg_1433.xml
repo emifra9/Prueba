@@ -18,9 +18,10 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
+        <!--android:tag="numero de jugador;posicion"-->
         <ImageButton
             android:id="@+id/btn1"
-            android:tag="btn1;1"
+            android:tag="1;1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -60,7 +61,7 @@
 
                 <ImageButton
                     android:id="@+id/btn2"
-                    android:tag="btn2;2"
+                    android:tag="2;2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -83,7 +84,7 @@
                 >
                 <ImageButton
                     android:id="@+id/btn3"
-                    android:tag="btn3;2"
+                    android:tag="3;2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -106,7 +107,7 @@
                 >
                 <ImageButton
                     android:id="@+id/btn4"
-                    android:tag="btn4;2"
+                    android:tag="4;2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -129,7 +130,7 @@
                 >
                 <ImageButton
                     android:id="@+id/btn5"
-                    android:tag="btn5;2"
+                    android:tag="5;2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -169,7 +170,7 @@
 
                 <ImageButton
                     android:id="@+id/btn6"
-                    android:tag="btn6;3"
+                    android:tag="6;3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -192,7 +193,7 @@
                 >
                 <ImageButton
                     android:id="@+id/btn7"
-                    android:tag="btn7;3"
+                    android:tag="7;3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -215,7 +216,7 @@
                 >
                 <ImageButton
                     android:id="@+id/btn8"
-                    android:tag="btn8;3"
+                    android:tag="8;3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -255,7 +256,7 @@
 
                 <ImageButton
                     android:id="@+id/btn9"
-                    android:tag="btn9;4"
+                    android:tag="9;4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -278,7 +279,7 @@
                 >
                 <ImageButton
                     android:id="@+id/btn10"
-                    android:tag="btn10;4"
+                    android:tag="10;4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -301,7 +302,7 @@
                 >
                 <ImageButton
                     android:id="@+id/btn11"
-                    android:tag="btn11;4"
+                    android:tag="11;4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"

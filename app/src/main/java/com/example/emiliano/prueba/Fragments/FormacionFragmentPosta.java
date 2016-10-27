@@ -1,6 +1,7 @@
 package com.example.emiliano.prueba.Fragments;
 
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,6 +16,13 @@ import com.example.emiliano.prueba.Model.Equipo;
 import com.example.emiliano.prueba.Model.Jugador;
 import com.example.emiliano.prueba.R;
 import com.example.emiliano.prueba.SqlHandlers.OperacionesDB;
+import com.example.emiliano.prueba.Utilidades.Utilidades;
+
+import java.lang.reflect.Field;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Administrador on 29/09/2016.
@@ -24,6 +32,7 @@ public class FormacionFragmentPosta extends Fragment implements View.OnClickList
     // The onCreateView method is called when Fragment should create its View object hierarchy,
     // either dynamically or via XML layout inflation.
     OperacionesDB db;
+    Utilidades util;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -36,50 +45,39 @@ public class FormacionFragmentPosta extends Fragment implements View.OnClickList
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         Bundle bundle = this.getArguments();
+        db = OperacionesDB.obtenerInstancia(getActivity());
+
         if (bundle != null) {
             Integer jugId = bundle.getInt("Jugador");
-            Integer btnId = bundle.getInt("btnId");
+            String btnId = bundle.getString("btnId");
 
-            db = OperacionesDB.obtenerInstancia(getActivity());
             Jugador jugador = db.obtenerJugador(jugId);
 
             Equipo equipo = new Equipo();
             equipo.setIdJugador(jugador.getId());
-            equipo.setNroPos(btnId);
+            equipo.setNroPos(Integer.parseInt(btnId));
             equipo.setSisJuegoId(1);
 
-            db.actualizarEquipo(equipo);
-
-            if (jugador.getPosicion() == 1){
-             //   btnId = (TextView) view.findViewById(R.id.txtArq);
-                //textArquero.setText(jugador.getNombre());
-            }
-
-
+            db.nuevoEquipo(equipo);
 
         }
-        ImageButton btn1 = (ImageButton)view.findViewById(R.id.btn1);
-        btn1.setOnClickListener(this);
-        ImageButton btn2 = (ImageButton)view.findViewById(R.id.btn2);
-        btn2.setOnClickListener(this);
-        ImageButton btn3 = (ImageButton)view.findViewById(R.id.btn3);
-        btn3.setOnClickListener(this);
-        ImageButton btn4 = (ImageButton)view.findViewById(R.id.btn4);
-        btn4.setOnClickListener(this);
-        ImageButton btn5 = (ImageButton)view.findViewById(R.id.btn5);
-        btn5.setOnClickListener(this);
-        ImageButton btn6 = (ImageButton)view.findViewById(R.id.btn6);
-        btn6.setOnClickListener(this);
-        ImageButton btn7 = (ImageButton)view.findViewById(R.id.btn7);
-        btn7.setOnClickListener(this);
-        ImageButton btn8 = (ImageButton)view.findViewById(R.id.btn8);
-        btn8.setOnClickListener(this);
-        ImageButton btn9 = (ImageButton)view.findViewById(R.id.btn9);
-        btn9.setOnClickListener(this);
-        ImageButton btn10 = (ImageButton)view.findViewById(R.id.btn10);
-        btn10.setOnClickListener(this);
-        ImageButton btn11 = (ImageButton)view.findViewById(R.id.btn11);
-        btn11.setOnClickListener(this);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        ArrayList<Equipo> arrEquipos = db.obtenerEquipos(dateFormat.format(date));
+
+        for (Equipo equip:arrEquipos) {
+            int resTxtId = getResources().getIdentifier("txt"+equip.getNroPos(), "id", getActivity().getPackageName());
+            TextView txtId = (TextView) view.findViewById(resTxtId);
+            Jugador jug = db.obtenerJugador(equip.getIdJugador());
+            txtId.setText(jug.getNombre());
+        }
+
+        for(int i=1; i<12; i++){
+            int resBtnId = getResources().getIdentifier("btn"+i, "id", getActivity().getPackageName());
+            ImageButton btn = (ImageButton)view.findViewById(resBtnId);
+            btn.setOnClickListener(this);
+        }
 
     }
     @Override

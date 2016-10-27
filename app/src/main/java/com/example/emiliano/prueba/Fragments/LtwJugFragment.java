@@ -40,8 +40,8 @@ public class LtwJugFragment extends Fragment {
         // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
      //   Construct the data source
         ArrayList<Jugador> arrayOfJugadores = new ArrayList<Jugador>();
-        Bundle bundle = this.getArguments();
-        String btnId = bundle.getString("Id");
+        final Bundle bundle = this.getArguments();
+        final String btnId = bundle.getString("Id");
         String btnPos = bundle.getString("Posicion");
 
         db = OperacionesDB.obtenerInstancia(getActivity());
@@ -56,10 +56,11 @@ public class LtwJugFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Jugador itemJug = adapter.getItem(position);
-                Bundle bundle = new Bundle();
-                bundle.putInt("Jugador", itemJug.getId());
-                Fragment fragment = new FormacionFragment();
-                fragment.setArguments(bundle);
+                Bundle bundle2 = new Bundle();
+                bundle2.putInt("Jugador", itemJug.getId());
+                bundle2.putString("btnId", btnId);
+                Fragment fragment = new FormacionFragmentPosta();
+                fragment.setArguments(bundle2);
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.phFragment,fragment);
                 ft.commit();

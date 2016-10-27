@@ -33,10 +33,10 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     interface Referencias{
-        String ID_JUGADOR = String.format("REFERENCE %s(%s)", Tablas.JUGADORES, Jugadores.ID);
-        String ID_SISJUEGO = String.format("REFERENCE %s(%s)", Tablas.SISJUEGO, SisJuegos.ID);
-        String ID_PUNTAJE = String.format("REFERENCE %s(%s)", Tablas.PUNTAJES, Puntajes.ID);
-        String ID_EQUIPO = String.format("REFERENCE %s(%s)", Tablas.EQUIPOS, Equipos.ID);
+        String ID_JUGADOR = String.format("REFERENCES %s(%s)", Tablas.JUGADORES, Jugadores.ID);
+        String ID_SISJUEGO = String.format("REFERENCES %s(%s)", Tablas.SISJUEGO, SisJuegos.ID);
+        String ID_PUNTAJE = String.format("REFERENCES %s(%s)", Tablas.PUNTAJES, Puntajes.ID);
+        String ID_EQUIPO = String.format("REFERENCES %s(%s)", Tablas.EQUIPOS, Equipos.ID);
     }
 
 
@@ -79,9 +79,10 @@ public class DBHelper extends SQLiteOpenHelper {
                         "%s INTEGER NOT NULL, %s TEXT NOT NULL)", Tablas.SISJUEGO, BaseColumns._ID,
                 SisJuegos.ID, SisJuegos.SISTEMAJUEGO));
         db.execSQL(String.format("CREATE TABLE %s ( %s INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                        "%s INTEGER NOT NULL, %s INTEGER NOT NULL, %s INTEGER NOT NULL , %s INTEGER NOT NULL , %s DATETIME DEFAULT CURRENT_TIMESTAMP %s , %s)", Tablas.EQUIPOS, BaseColumns._ID,
-                Equipos.ID, Equipos.ID_JUGADOR, Equipos.ID_SISJUEGO, Equipos.NROPOS, Equipos.FECHAMODIF, Referencias.ID_JUGADOR, Referencias.ID_SISJUEGO));
+                        "%s INTEGER NOT NULL, %s INTEGER NOT NULL, %s INTEGER NOT NULL , %s DATETIME DEFAULT CURRENT_TIMESTAMP)", Tablas.EQUIPOS,
+                Equipos.ID, Equipos.ID_JUGADOR, Equipos.ID_SISJUEGO, Equipos.NROPOS, Equipos.FECHAMODIF));
 
+        //FOREIGN KEY (%s) %s, FOREIGN KEY (%s) %s
     }
 
     @Override
