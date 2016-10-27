@@ -10,7 +10,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main"
     tools:context="com.example.emiliano.prueba.EquipoActivity"
-   >
+    >
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -19,8 +19,8 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/btnArq"
-            android:tag="btnArq;1"
+            android:id="@+id/btn1"
+            android:tag="btn1;1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -32,9 +32,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtArq"
+            android:id="@+id/txt1"
             android:text=""
-            android:layout_below="@+id/btnArq"
+            android:layout_below="@+id/btn1"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
@@ -59,7 +59,8 @@
                 >
 
                 <ImageButton
-                    android:id="@+id/btnDef1"
+                    android:id="@+id/btn2"
+                    android:tag="btn2;2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -70,8 +71,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:id="@+id/txtDef1"
-                    android:layout_below="@+id/btnDef1"
+                    android:id="@+id/txt2"
+                    android:layout_below="@+id/btn2"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
             <RelativeLayout
@@ -81,7 +82,8 @@
                 android:layout_weight="1"
                 >
                 <ImageButton
-                    android:id="@+id/btnDef2"
+                    android:id="@+id/btn3"
+                    android:tag="btn3;2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -92,8 +94,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:id="@+id/txtDef2"
-                    android:layout_below="@+id/btnDef2"
+                    android:id="@+id/txt3"
+                    android:layout_below="@+id/btn3"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
             <RelativeLayout
@@ -103,7 +105,8 @@
                 android:layout_weight="1"
                 >
                 <ImageButton
-                    android:id="@+id/btnDef3"
+                    android:id="@+id/btn4"
+                    android:tag="btn4;2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -114,8 +117,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:id="@+id/txtDef3"
-                    android:layout_below="@+id/btnDef3"
+                    android:id="@+id/txt4"
+                    android:layout_below="@+id/btn4"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
             <RelativeLayout
@@ -125,7 +128,8 @@
                 android:layout_weight="1"
                 >
                 <ImageButton
-                    android:id="@+id/btnDef4"
+                    android:id="@+id/btn5"
+                    android:tag="btn5;2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -136,8 +140,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:id="@+id/txtDef4"
-                    android:layout_below="@+id/btnDef4"
+                    android:id="@+id/txt5"
+                    android:layout_below="@+id/btn5"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
         </LinearLayout>
@@ -164,7 +168,8 @@
                 >
 
                 <ImageButton
-                    android:id="@+id/btnMed1"
+                    android:id="@+id/btn6"
+                    android:tag="btn6;3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -175,8 +180,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:id="@+id/txtMed1"
-                    android:layout_below="@+id/btnMed1"
+                    android:id="@+id/txt6"
+                    android:layout_below="@+id/btn6"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
             <RelativeLayout
@@ -186,7 +191,8 @@
                 android:layout_weight="1"
                 >
                 <ImageButton
-                    android:id="@+id/btnMed2"
+                    android:id="@+id/btn7"
+                    android:tag="btn7;3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -197,8 +203,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:id="@+id/txtMed2"
-                    android:layout_below="@+id/btnMed2"
+                    android:id="@+id/txt7"
+                    android:layout_below="@+id/btn7"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
             <RelativeLayout
@@ -208,7 +214,8 @@
                 android:layout_weight="1"
                 >
                 <ImageButton
-                    android:id="@+id/btnMed3"
+                    android:id="@+id/btn8"
+                    android:tag="btn8;3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -219,8 +226,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:id="@+id/txtMed3"
-                    android:layout_below="@+id/btnMed3"
+                    android:id="@+id/txt8"
+                    android:layout_below="@+id/btn8"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
@@ -247,7 +254,8 @@
                 >
 
                 <ImageButton
-                    android:id="@+id/btnDel1"
+                    android:id="@+id/btn9"
+                    android:tag="btn9;4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -258,8 +266,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:id="@+id/txtDel1"
-                    android:layout_below="@+id/btnDel1"
+                    android:id="@+id/txt9"
+                    android:layout_below="@+id/btn9"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
             <RelativeLayout
@@ -269,7 +277,8 @@
                 android:layout_weight="1"
                 >
                 <ImageButton
-                    android:id="@+id/btnDel2"
+                    android:id="@+id/btn10"
+                    android:tag="btn10;4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -280,8 +289,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:id="@+id/txtDel2"
-                    android:layout_below="@+id/btnDel2"
+                    android:id="@+id/txt10"
+                    android:layout_below="@+id/btn10"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
             <RelativeLayout
@@ -291,7 +300,8 @@
                 android:layout_weight="1"
                 >
                 <ImageButton
-                    android:id="@+id/btnDel3"
+                    android:id="@+id/btn11"
+                    android:tag="btn11;4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/jugador"
@@ -302,8 +312,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:id="@+id/txtDel3"
-                    android:layout_below="@+id/btnDel3"
+                    android:id="@+id/txt11"
+                    android:layout_below="@+id/btn11"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
