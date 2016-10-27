@@ -10,7 +10,7 @@
 
         <item
             android:id="@+id/nav_copa"
-            android:icon="@drawable/copa2"
+            android:icon="@drawable/copas"
             android:title="Torneos" />
         <item
             android:id="@+id/nav_apuestas"

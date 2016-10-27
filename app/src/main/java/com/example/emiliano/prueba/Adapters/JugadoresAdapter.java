@@ -1,4 +1,4 @@
-package com.example.emiliano.prueba;
+package com.example.emiliano.prueba.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.example.emiliano.prueba.Model.Jugador;
+import com.example.emiliano.prueba.R;
+
 import java.util.ArrayList;
 
 /**
@@ -15,7 +19,7 @@ import java.util.ArrayList;
 public class JugadoresAdapter extends ArrayAdapter<Jugador> {
     private static class ViewHolder {
         TextView nombre;
-        TextView puntos;
+        TextView precio;
     }
 
     public JugadoresAdapter(Context context, ArrayList<Jugador> jugadores) {
@@ -34,7 +38,7 @@ public class JugadoresAdapter extends ArrayAdapter<Jugador> {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.ltwjugadoritem, parent, false);
             viewHolder.nombre = (TextView) convertView.findViewById(R.id.nombreJugador);
-            viewHolder.puntos = (TextView) convertView.findViewById(R.id.puntaje);
+            viewHolder.precio = (TextView) convertView.findViewById(R.id.precio);
             // Cache the viewHolder object inside the fresh view
             convertView.setTag(viewHolder);
         } else {
@@ -42,8 +46,8 @@ public class JugadoresAdapter extends ArrayAdapter<Jugador> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         // Populate the data into the template view using the data object
-        viewHolder.nombre.setText(jugador.nombre);
-        viewHolder.puntos.setText(jugador.puntaje);
+        viewHolder.nombre.setText(jugador.getNombre());
+        viewHolder.precio.setText(jugador.getPrecio().toString());
         // Return the completed view to render on screen
         return convertView;
     }

@@ -1,17 +1,21 @@
-package com.example.emiliano.prueba;
+package com.example.emiliano.prueba.Fragments;
 
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.example.emiliano.prueba.Adapters.JugadoresAdapter;
+import com.example.emiliano.prueba.Model.Jugador;
+import com.example.emiliano.prueba.R;
+import com.example.emiliano.prueba.SqlHandlers.OperacionesDB;
 
 import java.util.ArrayList;
 /**
@@ -19,6 +23,7 @@ import java.util.ArrayList;
  */
 
 public class LtwJugFragment extends Fragment {
+    OperacionesDB db;
     // The onCreateView method is called when Fragment should create its View object hierarchy,
     // either dynamically or via XML layout inflation.
     @Override
@@ -35,35 +40,30 @@ public class LtwJugFragment extends Fragment {
         // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
      //   Construct the data source
         ArrayList<Jugador> arrayOfJugadores = new ArrayList<Jugador>();
+        Bundle bundle = this.getArguments();
+        String btnId = bundle.getString("Id");
+        String btnPos = bundle.getString("Posicion");
+
+        db = OperacionesDB.obtenerInstancia(getActivity());
+        arrayOfJugadores = db.obtenerJugadoresxPos(btnPos);
 // Create the adapter to convert the array to views
         final JugadoresAdapter adapter = new JugadoresAdapter(getActivity(), arrayOfJugadores);
 // Attach the adapter to a ListView
-
-        Jugador newJugador = new Jugador("Marco Ruben", "12");
-        adapter.add(newJugador);
-        Jugador newJugador1 = new Jugador("Paulo Ferrari", "6");
-        adapter.add(newJugador1);
-        Jugador newJugador2 = new Jugador("Teo Gutierrez", "8");
-        adapter.add(newJugador2);
-        //   Jugador newJugador2 = new Jugador("Ferrari", 5);
-        //  adapter.add(newJugador2);
         final ListView listView = (ListView) view.findViewById(R.id.ltwjugadores);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
-                    Jugador item = adapter.getItem(position);
+                Jugador itemJug = adapter.getItem(position);
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("Jugador", item);
+                bundle.putInt("Jugador", itemJug.getId());
                 Fragment fragment = new FormacionFragment();
                 fragment.setArguments(bundle);
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.phFragment,fragment);
                 ft.commit();
-                   // Intent i = new Intent(getActivity(), EquipoActivity.class);
-                   // startActivity(i);
+
 
             }
         });
