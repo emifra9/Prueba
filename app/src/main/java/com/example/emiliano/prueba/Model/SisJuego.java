@@ -19,7 +19,7 @@ public class SisJuego {
     public SisJuego(JSONObject object) {
         try {
             this.id = object.getInt("id");
-            this.sistemajuego = object.getString("nombre");
+            this.sistemajuego = object.getString("sistemajuego");
 
         } catch (JSONException e) {
             e.printStackTrace();

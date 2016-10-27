@@ -191,18 +191,14 @@ public class OperacionesDB {
 
     // [/OPERACIONES_SISJUEGO]
     // [OPERACIONES_EQUIPO]
-    public void actualizarEquipo(Equipo equipo) {
+    public void nuevoEquipo(Equipo equipo) {
         SQLiteDatabase db = baseDatos.getWritableDatabase();
         ContentValues valores = new ContentValues();
-        valores.put(Equipos.ID, equipo.getId());
         valores.put(Equipos.ID_JUGADOR, equipo.getIdJugador());
         valores.put(Equipos.ID_SISJUEGO, equipo.getSisJuegoId());
         valores.put(Equipos.NROPOS, equipo.getNroPos());
 
-        String whereClause = String.format("%s=?", Equipos.ID);
-        final String[] whereArgs = {Integer.toString(equipo.getId())};
-
-         db.update(Tablas.EQUIPOS, valores, whereClause, whereArgs);
+         db.insert(Tablas.EQUIPOS, null, valores);
     }
     public Equipo obtenerEquipo(int nroPos) {
         SQLiteDatabase db = baseDatos.getReadableDatabase();
@@ -221,6 +217,35 @@ public class OperacionesDB {
         return equipo;
     }
 
+    public ArrayList<Equipo> obtenerEquipos(String fecha) {
+        SQLiteDatabase db = baseDatos.getReadableDatabase();
+        String sql = String.format("SELECT * FROM %s WHERE %s <= Datetime('%s') ORDER BY %s DESC", Tablas.EQUIPOS, Equipos.FECHAMODIF, fecha, Equipos.ID);
+        //
+
+        Log.e("LOG SQL EQUIPO", sql);
+
+        ArrayList<Equipo> arrEquipos = new ArrayList<Equipo>();
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.getCount() > 0){
+            cursor.moveToFirst();
+            do {
+                Log.e("ID EQUIPO", "" + cursor.getInt(cursor.getColumnIndex(Equipos.ID)));
+                Equipo equipo = new Equipo();
+                equipo.setId(cursor.getInt(cursor.getColumnIndex(Equipos.ID)));
+                equipo.setIdJugador(cursor.getInt(cursor.getColumnIndex(Equipos.ID_JUGADOR)));
+                equipo.setSisJuegoId(cursor.getInt(cursor.getColumnIndex(Equipos.ID_SISJUEGO)));
+                equipo.setNroPos(cursor.getInt(cursor.getColumnIndex(Equipos.NROPOS)));
+
+                Log.e("FECHA MODIF EQUIPO", ""+cursor.getString(cursor.getColumnIndex(Equipos.FECHAMODIF))+"***************");
+                arrEquipos.add(equipo);
+
+            } while (cursor.moveToNext());
+        }
+        return arrEquipos;
+    }
+
     // [/OPERACIONES_EQUIPO]
+
+
 
 }

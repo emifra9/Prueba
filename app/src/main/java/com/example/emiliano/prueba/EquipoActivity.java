@@ -1,6 +1,7 @@
 package com.example.emiliano.prueba;
 
 
+import android.app.Activity;
 import android.database.DatabaseUtils;
 import android.os.Bundle;
 
@@ -13,6 +14,7 @@ import android.util.Log;
 import com.example.emiliano.prueba.Fragments.FormacionFragment;
 import com.example.emiliano.prueba.Fragments.FormacionFragmentPosta;
 import com.example.emiliano.prueba.Model.Jugador;
+import com.example.emiliano.prueba.Model.SisJuego;
 import com.example.emiliano.prueba.PostTask.AsyncTaskListener;
 import com.example.emiliano.prueba.PostTask.PostTask;
 import com.example.emiliano.prueba.SqlHandlers.OperacionesDB;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 
 public class EquipoActivity extends AppCompatActivity {
     OperacionesDB db;
+    final Activity activity = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +37,8 @@ public class EquipoActivity extends AppCompatActivity {
                 .obtenerInstancia(getApplicationContext());
 //db.EliminaDB();
         String url = "jugadores.php";
-        String params = "action=getjugadores";
-        PostTask wscall = new PostTask(this, url, params, new AsyncTaskListener() {
+        String params = "action=getjugadores&fecha=2016-10-26 20:02:04";
+        PostTask wscall = new PostTask(activity, url, params, new AsyncTaskListener() {
             @Override
         public void onTaskComplete(JSONArray result) {
                 Log.e("equipoactivity","entro"+ result);
@@ -44,18 +47,27 @@ public class EquipoActivity extends AppCompatActivity {
                 Log.e("Detalles de jugadores", "Detalles de jugadores");
          //       DatabaseUtils.dumpCursor(db.obtenerJugadores());
 
+                String url2 = "sisjuego.php";
+                String params2 = "action=getsisjuego&fecha=2016-10-26 20:02:04";
+                PostTask wscall2 = new PostTask(activity, url2, params2, new AsyncTaskListener() {
+                    @Override
+                    public void onTaskComplete(JSONArray result) {
+                        Log.e("SISJUEGOOOOOOOOOOOOO","entro"+ result);
+                        ArrayList<SisJuego> sisJuegos = SisJuego.fromJson(result);
+                        db.actualizarSisJuegos(sisJuegos);
+
+                        // Begin the transaction
+                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.phFragment, new FormacionFragmentPosta());
+                        ft.commit();
+                    }
+                });
+                wscall2.execute();
 
             }
         });
         wscall.execute();
 
-        // Begin the transaction
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-// Replace the contents of the container with the new fragment
-        ft.replace(R.id.phFragment, new FormacionFragmentPosta());
-// or ft.add(R.id.your_placeholder, new FooFragment());
-// Complete the changes added above
-        ft.commit();
 
     }
 
