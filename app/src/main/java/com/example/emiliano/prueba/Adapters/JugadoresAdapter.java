@@ -1,54 +1,102 @@
 package com.example.emiliano.prueba.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.emiliano.prueba.EquipoActivity;
+import com.example.emiliano.prueba.Fragments.FormacionFrg;
+import com.example.emiliano.prueba.MainActivity;
+import com.example.emiliano.prueba.Model.Equipo;
 import com.example.emiliano.prueba.Model.Jugador;
 import com.example.emiliano.prueba.R;
+import com.example.emiliano.prueba.ViewHolders.ListJugadoresVH;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Administrador on 27/09/2016.
  */
 
-public class JugadoresAdapter extends ArrayAdapter<Jugador> {
-    private static class ViewHolder {
-        TextView nombre;
-        TextView precio;
-    }
+public class JugadoresAdapter extends RecyclerView.Adapter<ListJugadoresVH> {
 
-    public JugadoresAdapter(Context context, ArrayList<Jugador> jugadores) {
-        super(context, R.layout.ltwjugadoritem, jugadores);
+    private List<Jugador> mData = Collections.emptyList();
+    private String btnId;
+    private String btnPos;
+
+    private final Activity activity;
+    private final EquipoActivity equipoActivity;
+
+    public JugadoresAdapter(Activity context, List<Jugador> data, String btnId, String btnPos) {
+        // Pass context or other static stuff that will be needed.
+        this.mData = data;
+        this.activity = context;
+        this.btnId = btnId;
+        this.btnPos = btnPos;
+        this.equipoActivity = (EquipoActivity) context;
+
+    }
+    @Override
+    public int getItemCount() {
+        return mData.size();
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        // Get the data item for this position
-        Jugador jugador = getItem(position);
-        // Check if an existing view is being reused, otherwise inflate the view
-        ViewHolder viewHolder; // view lookup cache stored in tag
-        if (convertView == null) {
-            // If there's no view to re-use, inflate a brand new view for row
-            viewHolder = new ViewHolder();
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.ltwjugadoritem, parent, false);
-            viewHolder.nombre = (TextView) convertView.findViewById(R.id.nombreJugador);
-            viewHolder.precio = (TextView) convertView.findViewById(R.id.precio);
-            // Cache the viewHolder object inside the fresh view
-            convertView.setTag(viewHolder);
-        } else {
-            // View is being recycled, retrieve the viewHolder object from tag
-            viewHolder = (ViewHolder) convertView.getTag();
-        }
-        // Populate the data into the template view using the data object
-        viewHolder.nombre.setText(jugador.getNombre());
-        viewHolder.precio.setText(jugador.getPrecio().toString());
-        // Return the completed view to render on screen
-        return convertView;
+    public ListJugadoresVH onCreateViewHolder(ViewGroup viewGroup, int position) {
+        LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+        View itemView = inflater.inflate(R.layout.jugador_item, viewGroup, false);
+        return new ListJugadoresVH(itemView);
     }
+
+    @Override
+    public void onBindViewHolder(final ListJugadoresVH viewHolder, final int position) {
+
+        viewHolder.nombre.setText(mData.get(position).getNombre());
+        viewHolder.precio.setText("$ " + mData.get(position).getPrecio());
+        //viewHolder.equipo.setText(mData.get(position).getEquipo());
+
+        viewHolder.itemJug.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Jugador itemJug = mData.get(position);
+                Bundle bundle2 = new Bundle();
+                bundle2.putInt("Jugador", itemJug.getId());
+                bundle2.putString("btnId", btnId);
+                Log.e("JUG ADAPTER btnId: ", ""+btnId);
+                Log.e("JUG ADAPTER ID: ", ""+itemJug.getId());
+                Fragment fragment = new FormacionFrg();
+                fragment.setArguments(bundle2);
+                FragmentManager fm = equipoActivity.getSupportFragmentManager();
+                fm.popBackStack();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.phFragment,fragment);
+                ft.commit();
+
+
+            }
+        });
+
+
+
+
+
+
+
+
+    }
+
 }

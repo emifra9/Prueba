@@ -75,19 +75,22 @@ public class OperacionesDB {
         String sql = String.format("SELECT * FROM %s where %s=%s", Tablas.JUGADORES,Jugadores.POSICION,posicion);
 
         Cursor cursor = db.rawQuery(sql, null);
-        cursor.moveToFirst();
-        do {
-            Jugador jugador = new Jugador();
-            jugador.setId(cursor.getInt(cursor.getColumnIndex(Jugadores.ID)));
-            jugador.setNombre(cursor.getString(cursor.getColumnIndex(Jugadores.NOMBRE)));
-            jugador.setPosicion(cursor.getInt(cursor.getColumnIndex(Jugadores.POSICION)));
-            jugador.setPrecio(cursor.getInt(cursor.getColumnIndex(Jugadores.PRECIO)));
+        try {
+            while (cursor.moveToNext()) {
+                Jugador jugador = new Jugador();
+                jugador.setId(cursor.getInt(cursor.getColumnIndex(Jugadores.ID)));
+                jugador.setNombre(cursor.getString(cursor.getColumnIndex(Jugadores.NOMBRE)));
+                jugador.setPosicion(cursor.getInt(cursor.getColumnIndex(Jugadores.POSICION)));
+                jugador.setPrecio(cursor.getInt(cursor.getColumnIndex(Jugadores.PRECIO)));
 
-            jugadores.add(jugador);
-
-        } while (cursor.moveToNext());
+                jugadores.add(jugador);
+            }
+        }finally {
+            cursor.close();
+        }
         return jugadores;
     }
+
     public Jugador obtenerJugador(int idJug) {
         SQLiteDatabase db = baseDatos.getReadableDatabase();
          String sql = String.format("SELECT * FROM %s where %s=%s", Tablas.JUGADORES, Jugadores.ID, idJug);
@@ -226,7 +229,7 @@ public class OperacionesDB {
         SQLiteDatabase db = baseDatos.getReadableDatabase();
      //   String sql = String.format("SELECT * FROM %s WHERE %s <= Datetime('%s') ORDER BY %s DESC", Tablas.EQUIPOS, Equipos.FECHAMODIF, fecha, Equipos.ID);
 
-        String sql2 = String.format(" select* from %s\n" +
+        String sql2 = String.format(" select * from %s\n" +
                 "        where %s = (select max(%s) from  %s as f \n" +
                 "        where f.%s  <= Datetime('%s')and f.%s = %s.%s);  ",Tablas.EQUIPOS,Equipos.FECHAMODIF,Equipos.FECHAMODIF,
                 Tablas.EQUIPOS,Equipos.FECHAMODIF,fecha,Equipos.NROPOS,Tablas.EQUIPOS,Equipos.NROPOS);

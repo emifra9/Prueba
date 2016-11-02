@@ -1,12 +1,14 @@
 package com.example.emiliano.prueba.Fragments;
 
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -16,9 +18,7 @@ import com.example.emiliano.prueba.Model.Equipo;
 import com.example.emiliano.prueba.Model.Jugador;
 import com.example.emiliano.prueba.R;
 import com.example.emiliano.prueba.SqlHandlers.OperacionesDB;
-import com.example.emiliano.prueba.Utilidades.Utilidades;
 
-import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ import java.util.Date;
  * Created by Administrador on 29/09/2016.
  */
 
-public class FormacionFragmentPosta extends Fragment implements View.OnClickListener{
+public class FormacionFrg extends Fragment implements View.OnClickListener{
     OperacionesDB db;
 
     @Override
@@ -44,7 +44,18 @@ public class FormacionFragmentPosta extends Fragment implements View.OnClickList
         Bundle bundle = this.getArguments();
         db = OperacionesDB.obtenerInstancia(getActivity());
 
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.my_toolbar);
+        MenuItem filter_menu = toolbar.getMenu().findItem(R.id.filtro);
+        if(filter_menu != null) {
+            filter_menu.setVisible(false);
+        }
+        MenuItem tactica_menu = toolbar.getMenu().findItem(R.id.tactica);
+        if(tactica_menu != null) {
+            tactica_menu.setVisible(true);
+        }
+
         if (bundle != null) {
+            Log.e("BUNDLE", ""+bundle.getInt("Jugador"));
             Integer jugId = bundle.getInt("Jugador");
             String btnId = bundle.getString("btnId");
             Jugador jugador = db.obtenerJugador(jugId);
@@ -54,6 +65,8 @@ public class FormacionFragmentPosta extends Fragment implements View.OnClickList
             equipo.setSisJuegoId(1);
 
             db.nuevoEquipo(equipo);
+
+            Log.e("frmfrg", "" + db.obtenerEquipo(Integer.parseInt(btnId)).getFechaModif());
 
         }
 
@@ -82,11 +95,13 @@ public class FormacionFragmentPosta extends Fragment implements View.OnClickList
         Bundle bundle = new Bundle();
         bundle.putString("Id", btnId);
         bundle.putString("Posicion", btnPosicion);
-        Fragment fragment = new LtwJugFragment();
+        Fragment fragment = new ListJugadoresFrg();
         fragment.setArguments(bundle);
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
 // Replace the contents of the container with the new fragment
         ft.replace(R.id.phFragment, fragment);
+        ft.addToBackStack(null);
         ft.commit();
     }
 
