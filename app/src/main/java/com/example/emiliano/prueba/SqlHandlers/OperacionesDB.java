@@ -3,6 +3,7 @@ package com.example.emiliano.prueba.SqlHandlers;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -205,42 +206,49 @@ public class OperacionesDB {
         String sql = String.format("SELECT * FROM %s where %s=%s  ORDER BY %s DESC LIMIT 1", Tablas.EQUIPOS, Equipos.NROPOS, nroPos, Equipos.ID);
 
         Equipo equipo = new Equipo();
-        Cursor cursor = db.rawQuery(sql, null);
-        cursor.moveToFirst();
-        do {
-            equipo.setId(cursor.getInt(cursor.getColumnIndex(Equipos.ID)));
-            equipo.setIdJugador(cursor.getInt(cursor.getColumnIndex(Equipos.ID_JUGADOR)));
-            equipo.setSisJuegoId(cursor.getInt(cursor.getColumnIndex(Equipos.ID_SISJUEGO)));
-            equipo.setNroPos(cursor.getInt(cursor.getColumnIndex(Equipos.NROPOS)));
 
-        } while (cursor.moveToNext());
+        Cursor cursor = db.rawQuery(sql, null);
+        try {
+            while (cursor.moveToNext()) {
+                equipo.setId(cursor.getInt(cursor.getColumnIndex(Equipos.ID)));
+                equipo.setIdJugador(cursor.getInt(cursor.getColumnIndex(Equipos.ID_JUGADOR)));
+                equipo.setSisJuegoId(cursor.getInt(cursor.getColumnIndex(Equipos.ID_SISJUEGO)));
+                equipo.setNroPos(cursor.getInt(cursor.getColumnIndex(Equipos.NROPOS)));
+            }
+        }finally {
+            cursor.close();
+        }
+
         return equipo;
     }
 
     public ArrayList<Equipo> obtenerEquipos(String fecha) {
         SQLiteDatabase db = baseDatos.getReadableDatabase();
-        String sql = String.format("SELECT * FROM %s WHERE %s <= Datetime('%s') ORDER BY %s DESC", Tablas.EQUIPOS, Equipos.FECHAMODIF, fecha, Equipos.ID);
-        //
+     //   String sql = String.format("SELECT * FROM %s WHERE %s <= Datetime('%s') ORDER BY %s DESC", Tablas.EQUIPOS, Equipos.FECHAMODIF, fecha, Equipos.ID);
 
-        Log.e("LOG SQL EQUIPO", sql);
+        String sql2 = String.format(" select* from %s\n" +
+                "        where %s = (select max(%s) from  %s as f \n" +
+                "        where f.%s  <= Datetime('%s')and f.%s = %s.%s);  ",Tablas.EQUIPOS,Equipos.FECHAMODIF,Equipos.FECHAMODIF,
+                Tablas.EQUIPOS,Equipos.FECHAMODIF,fecha,Equipos.NROPOS,Tablas.EQUIPOS,Equipos.NROPOS);
+        Log.e("SQL", sql2);
+
 
         ArrayList<Equipo> arrEquipos = new ArrayList<Equipo>();
-        Cursor cursor = db.rawQuery(sql, null);
-        if (cursor.getCount() > 0){
-            cursor.moveToFirst();
-            do {
-                Log.e("ID EQUIPO", "" + cursor.getInt(cursor.getColumnIndex(Equipos.ID)));
+        Cursor cursor = db.rawQuery(sql2, null);
+        Log.e("Cursor Object", DatabaseUtils.dumpCursorToString(cursor));
+        try {
+            while (cursor.moveToNext()) {
                 Equipo equipo = new Equipo();
                 equipo.setId(cursor.getInt(cursor.getColumnIndex(Equipos.ID)));
                 equipo.setIdJugador(cursor.getInt(cursor.getColumnIndex(Equipos.ID_JUGADOR)));
                 equipo.setSisJuegoId(cursor.getInt(cursor.getColumnIndex(Equipos.ID_SISJUEGO)));
                 equipo.setNroPos(cursor.getInt(cursor.getColumnIndex(Equipos.NROPOS)));
-
-                Log.e("FECHA MODIF EQUIPO", ""+cursor.getString(cursor.getColumnIndex(Equipos.FECHAMODIF))+"***************");
                 arrEquipos.add(equipo);
-
-            } while (cursor.moveToNext());
+            }
+        }finally {
+            cursor.close();
         }
+
         return arrEquipos;
     }
 

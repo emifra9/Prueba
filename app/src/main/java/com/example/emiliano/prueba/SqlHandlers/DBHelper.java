@@ -69,7 +69,7 @@ public class DBHelper extends SQLiteOpenHelper {
                         "%s INTEGER NOT NULL,%s TEXT NOT NULL, %s INTEGER NOT NULL, %s INTEGER NOT NULL)", Tablas.JUGADORES, BaseColumns._ID,
                 Jugadores.ID, Jugadores.NOMBRE, Jugadores.POSICION, Jugadores.PRECIO));
 
-        Log.e("DBHelper","oncreate tabla jugadores ");
+    //    Log.e("DBHelper","oncreate tabla jugadores ");
 
    /*     db.execSQL(String.format("CREATE TABLE %s ( %s INTEGER PRIMARY KEY AUTOINCREMENT, "+
                         "%s INTEGER NOT NULL, %s INTEGER NOT NULL %s, %s INTEGER NOT NULL)", Tablas.PUNTAJES, BaseColumns._ID,
@@ -78,9 +78,11 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(String.format("CREATE TABLE %s ( %s INTEGER PRIMARY KEY AUTOINCREMENT, "+
                         "%s INTEGER NOT NULL, %s TEXT NOT NULL)", Tablas.SISJUEGO, BaseColumns._ID,
                 SisJuegos.ID, SisJuegos.SISTEMAJUEGO));
+  //      Log.e("DBHelper","oncreate tabla sisjuego ");
         db.execSQL(String.format("CREATE TABLE %s ( %s INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                        "%s INTEGER NOT NULL, %s INTEGER NOT NULL, %s INTEGER NOT NULL , %s DATETIME DEFAULT CURRENT_TIMESTAMP)", Tablas.EQUIPOS,
+                        "%s INTEGER NOT NULL, %s INTEGER NOT NULL, %s INTEGER NOT NULL , %s DATETIME DEFAULT (DATETIME(CURRENT_TIMESTAMP, 'LOCALTIME')))", Tablas.EQUIPOS,
                 Equipos.ID, Equipos.ID_JUGADOR, Equipos.ID_SISJUEGO, Equipos.NROPOS, Equipos.FECHAMODIF));
+//        Log.e("DBHelper","oncreate tabla equipo ");
 
         //FOREIGN KEY (%s) %s, FOREIGN KEY (%s) %s
     }
